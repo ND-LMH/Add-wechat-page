@@ -21,6 +21,15 @@
             padding: 20px;
             text-align: center;
         }
+        .tip-box {
+            background-color: #fff7e6;
+            border: 1px solid #ff9c6e;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            color: #d46b08;
+            font-size: 14px;
+        }
         .qr-image {
             width: 80%;
             max-width: 320px;
@@ -50,7 +59,11 @@
     </style>
 </head>
 <body>
-    <!-- 这里放你的图片 -->
+    <!-- 闲鱼专属提示 -->
+    <div class="tip-box">
+        ⚠️ 微信内打开可能无法直接跳转，请点击右上角「...」→「在浏览器中打开」再点击按钮
+    </div>
+
     <img src="wechat-card.png" alt="微信名片" class="qr-image">
 
     <p class="desc-text">包含加微信、打电话、个人介绍、企业介绍等信息</p>
@@ -58,21 +71,19 @@
     <button id="addWechatBtn">添加好友</button>
 
     <script>
-        // ========== 改成你自己的微信号 ==========
         const YOUR_WECHAT_ID = "aaa1503727";
-        // ======================================
 
-        const btn = document.getElementById('addWechatBtn');
-
-        btn.addEventListener('click', async () => {
+        function handleAddWechat() {
             try {
-                await navigator.clipboard.writeText(YOUR_WECHAT_ID);
+                navigator.clipboard.writeText(YOUR_WECHAT_ID);
                 window.location.href = "weixin://";
                 alert("微信号已复制！\n打开微信 → 右上角+号 → 添加朋友 → 粘贴搜索即可添加");
             } catch (e) {
-                alert("请点击右上角，选择在浏览器中打开，即可跳转到微信添加好友");
+                alert("请点击右上角「...」，选择「在浏览器中打开」，再点击按钮即可添加");
             }
-        });
+        }
+
+        document.getElementById('addWechatBtn').addEventListener('click', handleAddWechat);
     </script>
 </body>
 </html>
