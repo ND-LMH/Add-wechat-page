@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>添加微信好友</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .qr-image {
+            width: 80%;
+            max-width: 320px;
+            margin-bottom: 30px;
+        }
+        .desc-text {
+            font-size: 18px;
+            color: #333333;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        #addWechatBtn {
+            width: 80%;
+            max-width: 320px;
+            padding: 16px 0;
+            background-color: #3b82f6;
+            color: white;
+            font-size: 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+        }
+        #addWechatBtn:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+    <!-- 这里放你的图片 -->
+    <img src="wechat-card.png" alt="微信名片" class="qr-image">
+
+    <p class="desc-text">包含加微信、打电话、个人介绍、企业介绍等信息</p>
+
+    <button id="addWechatBtn">添加好友</button>
+
+    <script>
+        // ========== 改成你自己的微信号 ==========
+        const YOUR_WECHAT_ID = "aaa1503727";
+        // ======================================
+
+        const btn = document.getElementById('addWechatBtn');
+
+        btn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(YOUR_WECHAT_ID);
+                window.location.href = "weixin://";
+                alert("微信号已复制！\n打开微信 → 右上角+号 → 添加朋友 → 粘贴搜索即可添加");
+            } catch (e) {
+                alert("请点击右上角，选择在浏览器中打开，即可跳转到微信添加好友");
+            }
+        });
+    </script>
+</body>
+</html>
